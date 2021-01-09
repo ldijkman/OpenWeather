@@ -223,7 +223,16 @@ void updateData() {
   Serial.print(", Lon = "); Serial.println(longitude);
 #endif
 
+  //On the ESP8266 (only) the library by default uses BearSSL, another option is to use AXTLS
+  //For problems with ESP8266 stability, use AXTLS by adding a false parameter thus       vvvvv
+  //ow.getForecast(current, hourly, daily, api_key, latitude, longitude, units, language, false);
+
   bool parsed = ow.getForecast(current, hourly, daily, api_key, latitude, longitude, units, language);
+
+  if (parsed) Serial.println("Data points received");
+  else Serial.println("Failed to get data points");
+
+  Serial.print("Free heap = "); Serial.println(ESP.getFreeHeap(), DEC);
 
   printWeather(); // For debug, turn on output with #define SERIAL_MESSAGES
 
@@ -555,7 +564,7 @@ void drawSeparator(uint16_t y) {
 // determine the "space" split point in a long string
 int splitIndex(String text)
 {
-  int index = 0;
+  uint16_t index = 0;
   while ( (text.indexOf(' ', index) >= 0) && ( index <= text.length() / 2 ) ) {
     index = text.indexOf(' ', index) + 1;
   }

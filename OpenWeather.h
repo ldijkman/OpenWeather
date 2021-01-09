@@ -5,6 +5,7 @@
 
 // Created by Bodmer 9/4/2020
 // This is a beta test version and is subject to change!
+// Insecure mode added by ADAMSIN12
 
 // See license.txt in root folder of library
 
@@ -26,12 +27,17 @@ class OW_Weather: public JsonListener {
 
   public:
     // Sketch calls this forecast request, it returns true if no parse errors encountered
+    // ESP8266 only: setting secure to false will invoke an insecure connection
     bool getForecast(OW_current *current, OW_hourly *hourly, OW_daily  *daily,
                      String api_key, String latitude, String longitude,
-                     String units, String language);
+                     String units, String language, bool secure = true);
 
     // Called by library (or user sketch), sends a GET request to a https (secure) url
     bool parseRequest(String url); // and parses response, returns true if no parse errors
+
+    // ESP8266 only, called by parseRequest()
+    bool parseRequestBearSSL(String* url); 
+    bool parseRequestAXTLS(String* url); 
 
     void partialDataSet(bool partialSet);
 
@@ -51,7 +57,6 @@ class OW_Weather: public JsonListener {
                           // Used to increment objectLayer
     void endObject();     // Called every time an object ends
                           // Used to decrement objectLayer and zero arrayIndex
-
 
     void startArray();    // An array of name:value pairs entered
     void endArray();      // Array member ended, increments arrayIndex
@@ -100,6 +105,8 @@ class OW_Weather: public JsonListener {
     uint16_t arrayIndex;    // Array index e.g. 5 for day 5 forecast, qualify with arrayPath
     uint16_t arrayLevel;    // Array level
 
+    bool     Secure = true; // Link security setting secure (https) or insecure (http)
+    uint16_t port;          // 
 };
 
 /***************************************************************************************
