@@ -35,9 +35,9 @@ class OW_Weather: public JsonListener {
     // Called by library (or user sketch), sends a GET request to a https (secure) url
     bool parseRequest(String url); // and parses response, returns true if no parse errors
 
-    // ESP8266 only, called by parseRequest()
-    bool parseRequestBearSSL(String* url); 
-    bool parseRequestAXTLS(String* url); 
+    // Called by library (or user sketch), sends a GET request to a http (insecure) url
+    bool parseRequestSecure(String* url); 
+    bool parseRequestInsecure(String* url); 
 
     void partialDataSet(bool partialSet);
 
@@ -57,6 +57,7 @@ class OW_Weather: public JsonListener {
                           // Used to increment objectLayer
     void endObject();     // Called every time an object ends
                           // Used to decrement objectLayer and zero arrayIndex
+
 
     void startArray();    // An array of name:value pairs entered
     void endArray();      // Array member ended, increments arrayIndex
