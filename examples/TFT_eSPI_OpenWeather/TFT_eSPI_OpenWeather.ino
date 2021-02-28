@@ -386,7 +386,7 @@ void drawCurrentWeather() {
 
   if (units == "imperial")
   {
-    weatherText = current->pressure;
+    weatherText = current->pressure * 0.02953;
     weatherText += " in";
   }
   else
