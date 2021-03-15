@@ -1,7 +1,5 @@
 # ESP8266 and ESP32 OpenWeather client
 
-(Note: the ESP32 Arduino board package 1.0.4 works fine, but the more recent 1.0.5 does not. Reason is unknown.)
-
 Arduino client library for https://openweathermap.org/
 
 Collects current weather plus daily forecasts.
