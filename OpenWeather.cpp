@@ -86,8 +86,9 @@ bool OW_Weather::parseRequest(String url) {
 
   uint32_t dt = millis();
 
-  OW_STATUS_PRINTF("\n\nThe connection to server is secure (https).\n");
+  OW_STATUS_PRINTF("\n\nThe connection to server is secure (https). Certificate not checked.\n");
   WiFiClientSecure client;
+  client.setInsecure(); // Certificate not checked
 
   const char*  host = "api.openweathermap.org";
   port = 443;
