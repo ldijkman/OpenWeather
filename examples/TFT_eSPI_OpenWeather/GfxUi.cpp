@@ -61,8 +61,9 @@ void GfxUi::drawBmp(String filename, uint16_t x, uint16_t y)
   bmpFS = SPIFFS.open(filename, "r");
 
   uint32_t seekOffset;
-  uint16_t w, h, row, col;
+  uint16_t w, h, row;
   uint8_t  r, g, b;
+  bool     oldSwap = false;
 
   if (read16(bmpFS) == 0x4D42)
   {
@@ -77,6 +78,7 @@ void GfxUi::drawBmp(String filename, uint16_t x, uint16_t y)
     {
       y += h - 1;
 
+      oldSwap = _tft->getSwapBytes();
       _tft->setSwapBytes(true);
       bmpFS.seek(seekOffset);
 
@@ -105,6 +107,7 @@ void GfxUi::drawBmp(String filename, uint16_t x, uint16_t y)
     }
     else Serial.println("BMP format not recognized.");
   }
+  _tft->setSwapBytes(oldSwap);
   bmpFS.close();
 }
 
@@ -181,10 +184,10 @@ void GfxUi::jpegRender(int xpos, int ypos) {
 
   // retrieve infomration about the image
   uint16_t  *pImg;
-  uint16_t mcu_w = JpegDec.MCUWidth;
-  uint16_t mcu_h = JpegDec.MCUHeight;
-  uint32_t max_x = JpegDec.width;
-  uint32_t max_y = JpegDec.height;
+  int16_t mcu_w = JpegDec.MCUWidth;
+  int16_t mcu_h = JpegDec.MCUHeight;
+  int32_t max_x = JpegDec.width;
+  int32_t max_y = JpegDec.height;
 
   // Jpeg images are draw as a set of image block (tiles) called Minimum Coding Units (MCUs)
   // Typically these MCUs are 16x16 pixel blocks
@@ -193,8 +196,8 @@ void GfxUi::jpegRender(int xpos, int ypos) {
   uint32_t min_h = minimum(mcu_h, max_y % mcu_h);
 
   // save the current image block size
-  uint32_t win_w = mcu_w;
-  uint32_t win_h = mcu_h;
+  int32_t win_w = mcu_w;
+  int32_t win_h = mcu_h;
 
   // record the current time so we can measure how long it takes to draw an image
   uint32_t drawTime = millis();
@@ -214,8 +217,8 @@ void GfxUi::jpegRender(int xpos, int ypos) {
     pImg = JpegDec.pImage;
 
     // calculate where the image block should be drawn on the screen
-    int mcu_x = JpegDec.MCUx * mcu_w + xpos;
-    int mcu_y = JpegDec.MCUy * mcu_h + ypos;
+    int32_t mcu_x = JpegDec.MCUx * mcu_w + xpos;
+    int32_t mcu_y = JpegDec.MCUy * mcu_h + ypos;
 
     // check if the image block size needs to be changed for the right edge
     if (mcu_x + mcu_w <= max_x) win_w = mcu_w;
