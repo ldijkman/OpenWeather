@@ -345,11 +345,11 @@ void drawCurrentWeather() {
   String currentSummary = current->main;
   currentSummary.toLowerCase();
 
-  weatherIcon = "partly-cloudy-day"; //getMeteoconIcon(current->id, true);
+  weatherIcon = getMeteoconIcon(current->id, true);
 
   //uint32_t dt = millis();
-  //ui.drawBmp("/icon/" + weatherIcon + ".bmp", 0, 53);
-  ui.drawJpeg("/icon/" + weatherIcon + ".jpg", 0, 53);
+  ui.drawBmp("/icon/" + weatherIcon + ".bmp", 0, 53);
+
 
   //Serial.print("Icon draw time = "); Serial.println(millis()-dt);
 
