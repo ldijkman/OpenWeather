@@ -1,5 +1,5 @@
-// Sketch for ESP32 to fetch the Weather Forecast from OpenWeather
-// an example from the library here:
+// Sketch for ESP32, ESP8266, RP2040 Nano Connect to fetch the
+// Weather Forecast from OpenWeather. An example from the library here:
 // https://github.com/Bodmer/OpenWeather
 
 // Sign up for a key and read API configuration info here:
@@ -14,6 +14,8 @@
 #ifdef ESP8266
   #include <ESP8266WiFi.h>
   #include <WiFiClientSecure.h>
+#elif defined(ARDUINO_ARCH_MBED)
+  #include <WiFiNINA.h>
 #else // ESP32
   #include <WiFi.h>
 #endif
@@ -51,16 +53,22 @@ String language = "en";   // See notes tab
 
 OW_Weather ow; // Weather forecast library instance
 
-void setup() { 
+void setup() {
   Serial.begin(250000); // Fast to stop it holding up the stream
 
-  Serial.printf("\n\nConnecting to %s\n", WIFI_SSID);
+  Serial.print("\n\nConnecting to "); Serial.println(WIFI_SSID);
 
-  WiFi.begin(WIFI_SSID, WIFI_PASSWORD);
-   
+  // Call once for ESP32 and ESP8266
+  #if !defined(ARDUINO_ARCH_MBED)
+    WiFi.begin(WIFI_SSID, WIFI_PASSWORD);
+  #endif
+
   while (WiFi.status() != WL_CONNECTED) {
-      delay(500);
-      Serial.print(".");
+    Serial.print(".");
+    #if defined(ARDUINO_ARCH_MBED)
+      if (WiFi.status() != WL_CONNECTED) WiFi.begin(WIFI_SSID, WIFI_PASSWORD);
+    #endif
+    delay(500);
   }
 
   Serial.println();
