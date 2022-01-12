@@ -266,7 +266,7 @@ void updateData() {
     tft.setTextPadding(tft.textWidth(" -88")); // Max width of values
 
     String weatherText = "";
-    weatherText = (int16_t) current->temp;  // Make it integer temperature
+    weatherText = String(current->temp, 0);  // Make it integer temperature
     tft.drawString(weatherText, 215, 95); //  + "°" symbol is big... use o in small font
   }
   else
@@ -375,7 +375,7 @@ void drawCurrentWeather() {
   //Temperature large digits added in updateData() to save swapping font here
  
   tft.setTextColor(TFT_ORANGE, TFT_BLACK);
-  weatherText = (uint16_t)current->wind_speed;
+  weatherText = String(current->wind_speed, 0);
 
   if (units == "metric") weatherText += " m/s";
   else weatherText += " mph";
@@ -391,7 +391,7 @@ void drawCurrentWeather() {
   }
   else
   {
-    weatherText = (uint16_t)current->pressure;
+    weatherText = String(current->pressure, 0);
     weatherText += " hPa";
   }
 
