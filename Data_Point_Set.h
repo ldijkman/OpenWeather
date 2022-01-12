@@ -67,6 +67,7 @@ typedef struct OW_hourly {
   String   description[MAX_HOURS];
   String   icon[MAX_HOURS];
   float    pop[MAX_HOURS];
+  float    rain1h[MAX_HOURS];
 } OW_hourly;
 
 /***************************************************************************************

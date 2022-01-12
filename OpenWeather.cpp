@@ -188,7 +188,7 @@ bool OW_Weather::parseRequestSecure(String* url) {
 
   // Must use namespace:: to select BearSSL
   BearSSL::WiFiClientSecure client;
-  client.setInsecure(); // Certificate not chhecked
+  client.setInsecure(); // Certificate not checked
   port = 443;
 
   if (!client.connect(host, port))
@@ -557,6 +557,8 @@ void OW_Weather::fullDataSet(const char *val) {
     if (currentKey == "icon") hourly->icon[arrayIndex] = value;
     else
     if (currentKey == "pop") hourly->pop[arrayIndex] = value.toFloat();
+    else
+    if (currentKey == "1h") hourly->rain1h[arrayIndex] = value.toFloat();
 
     return;
   }
