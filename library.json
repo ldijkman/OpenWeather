@@ -17,5 +17,5 @@
     }
   ],
   "frameworks": "arduino",
-  "platforms": "espressif8266, espressif32"
+  "platforms": "rp2040, espressif8266, espressif32"
 }

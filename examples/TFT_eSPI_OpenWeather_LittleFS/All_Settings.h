@@ -10,7 +10,7 @@
 //>>>>>>  Set LittleFS to at least 1.5Mbytes before uploading files  <<<<<<
 
 //            >>>           DON'T FORGET THIS             <<<
-//  Upload the fonts and icons to LittleFS using the "Tools"  "ESP32 Sketch Data Upload"
+//  Upload the fonts and icons to LittleFS using the "Tools" menu option.
 
 // You can change the number of hours and days for the forecast in the
 // "User_Setup.h" file inside the OpenWeather library folder.

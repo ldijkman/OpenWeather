@@ -7,13 +7,17 @@
 // See license.txt in root folder of library
 // Insecure mode added by ADAMSIN12
 
-#ifdef ESP8266
-  #include <ESP8266WiFi.h>
+#if defined(ARDUINO_ARCH_MBED) || defined(ARDUINO_ARCH_RP2040)
+  #include <WiFiNINA.h>
 #else
-  #include <WiFi.h>
+  #ifdef ESP8266
+    #include <ESP8266WiFi.h>
+  #else
+    #include <WiFi.h>
+  #endif
+  #include <WiFiClientSecure.h>
 #endif
 
-#include <WiFiClientSecure.h>
 
 // The streaming parser to use is not the Arduino IDE library manager default,
 // but this one which is slightly different and renamed to avoid conflicts:
@@ -169,7 +173,7 @@ bool OW_Weather::parseRequest(String url) {
   return parseOK;
 }
 
-#else // ESP8266 version
+#else // ESP8266 or Arduino RP2040 Nano Connect version
 
 /***************************************************************************************
 ** Function name:           parseRequest (for ESP8266)
@@ -186,9 +190,13 @@ bool OW_Weather::parseRequestSecure(String* url) {
 
   const char*  host = "api.openweathermap.org";
 
+  #if defined(ARDUINO_ARCH_MBED) || defined(ARDUINO_ARCH_RP2040)
+  WiFiSSLClient client;
+  #else
   // Must use namespace:: to select BearSSL
   BearSSL::WiFiClientSecure client;
   client.setInsecure(); // Certificate not checked
+  #endif
   port = 443;
 
   if (!client.connect(host, port))
@@ -207,7 +215,9 @@ bool OW_Weather::parseRequestSecure(String* url) {
   int ccount = 0;
   #endif
 
+  #ifdef ESP8266
   OW_STATUS_PRINTF("\nThe connection to server is using BearSSL in insecure mode (certificates not checked).\n");
+  #endif
 
   // Send GET request
   OW_STATUS_PRINTF("Sending GET request to api.openweathermap.org...\n");

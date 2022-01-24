@@ -1,8 +1,8 @@
 //  Example from OpenWeather library: https://github.com/Bodmer/OpenWeather
 //  Adapted by Bodmer to use the TFT_eSPI library:  https://github.com/Bodmer/TFT_eSPI
 
-//  This sketch is compatible with the ESP32 and ESP32 S2, it may also work on ESP8266 but
-//  this has not been tested.
+//  This sketch is compatible with the RP2040 Nano Connect, ESP32 and ESP32 S2, it may
+//  also work on ESP8266 but this has not been tested.
 
 //                           >>>  IMPORTANT  <<<
 //         Modify setup in All_Settings.h tab to configure your location etc
@@ -47,9 +47,12 @@
 // Additional functions
 #include "GfxUi.h"          // Attached to this sketch
 
+// Choose library to load
 #ifdef ESP8266
   #include <ESP8266WiFi.h>
-#else
+#elif defined(ARDUINO_ARCH_MBED) || defined(ARDUINO_ARCH_RP2040)
+  #include <WiFiNINA.h>
+#else // ESP32
   #include <WiFi.h>
 #endif
 
@@ -101,6 +104,18 @@ int leftOffset(String text, String sub);
 int rightOffset(String text, String sub);
 int splitIndex(String text);
 
+bool tft_output(int16_t x, int16_t y, uint16_t w, uint16_t h, uint16_t* bitmap)
+{
+   // Stop further decoding as image is running off bottom of screen
+  if ( y >= tft.height() ) return 0;
+
+  // This function will clip the image block rendering automatically at the TFT boundaries
+  tft.pushImage(x, y, w, h, bitmap);
+
+  // Return 1 to decode next block
+  return 1;
+}
+
 /***************************************************************************************
 **                          Setup
 ***************************************************************************************/
@@ -124,8 +139,14 @@ void setup() {
     tft.drawString("Formatting LittleFS, so wait!", 120, 195); LittleFS.format();
   #endif
 
+  TJpgDec.setJpgScale(1);
+  TJpgDec.setCallback(tft_output);
+  TJpgDec.setSwapBytes(true); // May need to swap the jpg colour bytes (endianess)
+
   // Draw splash screen
-  if (LittleFS.exists("/splash/OpenWeather.jpg")   == true) ui.drawJpeg("/splash/OpenWeather.jpg",   0, 40);
+  if (LittleFS.exists("/splash/OpenWeather.jpg")   == true) {
+    TJpgDec.drawFsJpg(0, 40, "/splash/OpenWeather.jpg", LittleFS);
+  }
 
   delay(2000);
 
@@ -148,11 +169,17 @@ void setup() {
   tft.drawString("Connecting to WiFi", 120, 240);
   tft.setTextPadding(240); // Pad next drawString() text to full width to over-write old text
 
-  WiFi.begin(WIFI_SSID, WIFI_PASSWORD);
+  // Call once for ESP32 and ESP8266
+  #if !defined(ARDUINO_ARCH_MBED)
+    WiFi.begin(WIFI_SSID, WIFI_PASSWORD);
+  #endif
 
   while (WiFi.status() != WL_CONNECTED) {
-    delay(1000);
     Serial.print(".");
+    #if defined(ARDUINO_ARCH_MBED) || defined(ARDUINO_ARCH_RP2040)
+      if (WiFi.status() != WL_CONNECTED) WiFi.begin(WIFI_SSID, WIFI_PASSWORD);
+    #endif
+    delay(500);
   }
   Serial.println();
 
@@ -235,7 +262,7 @@ void updateData() {
   if (parsed) Serial.println("Data points received");
   else Serial.println("Failed to get data points");
 
-  Serial.print("Free heap = "); Serial.println(ESP.getFreeHeap(), DEC);
+  //Serial.print("Free heap = "); Serial.println(ESP.getFreeHeap(), DEC);
 
   printWeather(); // For debug, turn on output with #define SERIAL_MESSAGES
 

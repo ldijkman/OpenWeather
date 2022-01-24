@@ -29,7 +29,7 @@ See more at http://blog.squix.ch
 #include <LittleFS.h>
 
 // JPEG decoder library
-#include <JPEGDecoder.h>
+#include <TJpg_Decoder.h>
 
 #ifndef _GFX_UI_H
 #define _GFX_UI_H
@@ -44,9 +44,6 @@ class GfxUi {
     GfxUi(TFT_eSPI * tft);
     void drawBmp(String filename, uint16_t x, uint16_t y);
     void drawProgressBar(uint16_t x, uint16_t y, uint16_t w, uint16_t h, uint8_t percentage, uint16_t frameColor, uint16_t barColor);
-    void jpegInfo();
-    void drawJpeg(String filename, int xpos, int ypos);
-    void jpegRender(int xpos, int ypos);
     
   private:
     TFT_eSPI * _tft;
