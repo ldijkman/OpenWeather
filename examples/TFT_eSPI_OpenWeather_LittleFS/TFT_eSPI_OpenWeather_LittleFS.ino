@@ -235,8 +235,6 @@ void updateData() {
   // booted = true;  // Test only
   // booted = false; // Test only
 
-  tft.loadFont(AA_FONT_SMALL, LittleFS);
-
   if (booted) drawProgress(20, "Updating time...");
   else fillSegment(22, 22, 0, (int) (20 * 3.6), 16, TFT_NAVY);
 
@@ -280,10 +278,10 @@ void updateData() {
 
   if (parsed)
   {
+    tft.loadFont(AA_FONT_SMALL, LittleFS);
     drawCurrentWeather();
     drawForecast();
     drawAstronomy();
-
     tft.unloadFont();
 
     // Update the temperature here so we don't need to keep
@@ -298,6 +296,7 @@ void updateData() {
     String weatherText = "";
     weatherText = String(current->temp, 0);  // Make it integer temperature
     tft.drawString(weatherText, 215, 95); //  + "°" symbol is big... use o in small font
+    tft.unloadFont();
   }
   else
   {
@@ -308,14 +307,13 @@ void updateData() {
   delete current;
   delete hourly;
   delete daily;
-
-  tft.unloadFont();
 }
 
 /***************************************************************************************
 **                          Update progress bar
 ***************************************************************************************/
 void drawProgress(uint8_t percentage, String text) {
+  tft.loadFont(AA_FONT_SMALL, LittleFS);
   tft.setTextDatum(BC_DATUM);
   tft.setTextColor(TFT_ORANGE, TFT_BLACK);
   tft.setTextPadding(240);
@@ -324,6 +322,7 @@ void drawProgress(uint8_t percentage, String text) {
   ui.drawProgressBar(10, 269, 240 - 20, 15, percentage, TFT_WHITE, TFT_BLUE);
 
   tft.setTextPadding(0);
+  tft.unloadFont();
 }
 
 /***************************************************************************************
