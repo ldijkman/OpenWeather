@@ -19,13 +19,6 @@
 #endif
 
 
-// The streaming parser to use is not the Arduino IDE library manager default,
-// but this one which is slightly different and renamed to avoid conflicts:
-// https://github.com/Bodmer/JSON_Decoder
-
-#include <JSON_Listener.h>
-#include <JSON_Decoder.h>
-
 #include "OpenWeather.h"
 
 

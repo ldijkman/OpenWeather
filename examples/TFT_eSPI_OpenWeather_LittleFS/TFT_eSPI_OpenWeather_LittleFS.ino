@@ -130,7 +130,7 @@ void setup() {
     Serial.println("Flash FS initialisation failed!");
     while (1) yield(); // Stay here twiddling thumbs waiting
   }
-  Serial.println("\n\Flash FS available!");
+  Serial.println("\nFlash FS available!");
 
   // Enable if you want to erase LittleFS, this takes some time!
   // then disable and reload sketch to avoid reformatting on every boot!
