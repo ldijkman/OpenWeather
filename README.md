@@ -1,3 +1,11 @@
+---
+
+Touch Electra, TFT_eSPI Touch, install from browser on ESP8266 12E / 12F
+https://github.com/ldijkman/randomnerd_esp32_wifi_manager/tree/main/ESP8266-TFT_eSPI
+
+---
+
+
 # RP2040 Nano Connect, ESP8266 and ESP32 OpenWeather client
 
 Arduino client library for https://openweathermap.org/
