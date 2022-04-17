@@ -1,3 +1,4 @@
+forked from Bodmer/OpenWeather https://github.com/Bodmer/OpenWeather
 ---
 
 Touch Electra, TFT_eSPI Touch, install from browser on ESP8266 12E / 12F
@@ -15,7 +16,7 @@ Collects current weather plus daily forecasts.
 Requires the JSON parse library here:
 https://github.com/Bodmer/JSON_Decoder
 
-The OpenWeather_Test example sketch sends collected data to the Serial port for API test. It does not not require a TFT screen and works with RP2040 Nano Connect, ESP32 and ESP8266.
+The OpenWeather_Test example sketch sends collected data to the Serial port for API test. It does not not require a TFT screen and works with ESPX ESP8266.
 
 The TFT_eSPI_OpenWeather_LittleFS example works with the RP2040 Nano Connect, ESP32 and ESP8266 and uses LittleFS, it displays the weather data on a TFT screen.
 
@@ -31,4 +32,6 @@ These examples use anti-aliased fonts and newly created icons:
 Latest screen grabs:
 
 ![TFT screenshot 1](https://i.imgur.com/ORovwNY.png)
+
+forked from Bodmer/OpenWeather https://github.com/Bodmer/OpenWeather
 
