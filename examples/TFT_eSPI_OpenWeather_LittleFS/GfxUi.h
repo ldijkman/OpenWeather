@@ -29,7 +29,7 @@ See more at http://blog.squix.ch
 #include <LittleFS.h>
 
 // JPEG decoder library
-#include <TJpg_Decoder.h>
+#include <TJpg_Decoder.h>    // https://github.com/Bodmer/TJpg_Decoder
 
 #ifndef _GFX_UI_H
 #define _GFX_UI_H
