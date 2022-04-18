@@ -1,3 +1,7 @@
+Original by: http://blog.squix.org
+
+Adapted by: Bodmer
+
 forked from Bodmer/OpenWeather https://github.com/Bodmer/OpenWeather
 ---
 
@@ -35,3 +39,6 @@ Latest screen grabs:
 
 forked from Bodmer/OpenWeather https://github.com/Bodmer/OpenWeather
 
+Original by: http://blog.squix.org
+
+Adapted by: Bodmer
