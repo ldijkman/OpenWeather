@@ -1,3 +1,14 @@
+
+trying to change the settings to a littlefs file config.txt
+
+so that electra can edit the config.txt file from ace js inbrowser web cloud editor
+
+nice add on for electra touch https://ldijkman.github.io/randomnerd_esp32_wifi_manager/Touch_Electra-Electra_Touch/
+
+program / install it on your esp8266 from browser
+
+------------------
+
 Original by: http://blog.squix.org
 
 Adapted by: Bodmer
