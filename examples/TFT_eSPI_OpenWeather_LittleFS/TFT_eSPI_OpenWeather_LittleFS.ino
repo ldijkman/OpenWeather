@@ -1,3 +1,12 @@
+
+
+//  4 electa read some settings from config.txt
+// so that you can change it in future from ace js cloud web editor
+// so that it can/will become part of electra touch tft broweser install
+
+
+
+
 //  Example from OpenWeather library: https://github.com/Bodmer/OpenWeather
 //  Adapted by Bodmer to use the TFT_eSPI library:  https://github.com/Bodmer/TFT_eSPI
 
@@ -49,11 +58,11 @@
 
 // Choose library to load
 #ifdef ESP8266
-  #include <ESP8266WiFi.h>
+#include <ESP8266WiFi.h>
 #elif defined(ARDUINO_ARCH_MBED) || defined(ARDUINO_ARCH_RP2040)
-  #include <WiFiNINA.h>
+#include <WiFiNINA.h>
 #else // ESP32
-  #include <WiFi.h>
+#include <WiFi.h>
 #endif
 
 
@@ -80,9 +89,18 @@ OW_daily   *daily;
 
 boolean booted = true;
 
+String  api_key;
+// Set the forecast longitude and latitude to at least 4 decimal places
+String latitude;// =  "52.735434"; // 90.0000 to -90.0000 negative for Southern hemisphere
+String longitude;// = "5.179017"; // 180.000 to -180.000 negative for West
+
+
+
 GfxUi ui = GfxUi(&tft); // Jpeg and bmpDraw functions TODO: pull outside of a class
 
 long lastDownloadUpdate = millis();
+
+
 
 /***************************************************************************************
 **                          Declare prototypes
@@ -106,7 +124,7 @@ int splitIndex(String text);
 
 bool tft_output(int16_t x, int16_t y, uint16_t w, uint16_t h, uint16_t* bitmap)
 {
-   // Stop further decoding as image is running off bottom of screen
+  // Stop further decoding as image is running off bottom of screen
   if ( y >= tft.height() ) return 0;
 
   // This function will clip the image block rendering automatically at the TFT boundaries
@@ -120,24 +138,41 @@ bool tft_output(int16_t x, int16_t y, uint16_t w, uint16_t h, uint16_t* bitmap)
 **                          Setup
 ***************************************************************************************/
 void setup() {
-  Serial.begin(250000);
+  Serial.begin(115200);
 
   tft.begin();
-  tft.setRotation(0); // For 320x480 screen
+  tft.setRotation(1); // For 320x480 screen
   tft.fillScreen(TFT_BLACK);
 
-  if (!LittleFS.begin()) {
+  while (!LittleFS.begin()) {
     Serial.println("Flash FS initialisation failed!");
-    while (1) yield(); // Stay here twiddling thumbs waiting
+    // while (1) yield(); // Stay here twiddling thumbs waiting
+    delay(100);
   }
   Serial.println("\nFlash FS available!");
+  if (LittleFS.exists("/config.txt")   == true) {
+    File file = LittleFS.open("/config.txt", "r");
+    delay(100);
+    api_key = file.readStringUntil('\n');
+    latitude = file.readStringUntil('\n');
+    longitude = file.readStringUntil('\n');
+   
+
+    Serial.print("-"); Serial.print(api_key); Serial.print("-");
+    Serial.println("...");
+    Serial.print("-"); Serial.print(latitude); Serial.print("-");
+    Serial.println("...");
+    Serial.print("-"); Serial.print(longitude); Serial.print("-");
+    Serial.println("...");
+   
+  }
 
   // Enable if you want to erase LittleFS, this takes some time!
   // then disable and reload sketch to avoid reformatting on every boot!
-  #ifdef FORMAT_LittleFS
-    tft.setTextDatum(BC_DATUM); // Bottom Centre datum
-    tft.drawString("Formatting LittleFS, so wait!", 120, 195); LittleFS.format();
-  #endif
+#ifdef FORMAT_LittleFS
+  tft.setTextDatum(BC_DATUM); // Bottom Centre datum
+  tft.drawString("Formatting LittleFS, so wait!", 120, 195); LittleFS.format();
+#endif
 
   TJpgDec.setJpgScale(1);
   TJpgDec.setCallback(tft_output);
@@ -170,18 +205,26 @@ void setup() {
   tft.setTextPadding(240); // Pad next drawString() text to full width to over-write old text
 
   // Call once for ESP32 and ESP8266
-  #if !defined(ARDUINO_ARCH_MBED)
-    WiFi.begin(WIFI_SSID, WIFI_PASSWORD);
-  #endif
-
+#if !defined(ARDUINO_ARCH_MBED)
+  WiFi.begin(WIFI_SSID, WIFI_PASSWORD);
+#endif
+tft.drawString("Connecting to KaRo", 120, 240);
+  int i = 0;
   while (WiFi.status() != WL_CONNECTED) {
-    Serial.print(".");
-    #if defined(ARDUINO_ARCH_MBED) || defined(ARDUINO_ARCH_RP2040)
-      if (WiFi.status() != WL_CONNECTED) WiFi.begin(WIFI_SSID, WIFI_PASSWORD);
-    #endif
-    delay(500);
+    Serial.print(i);
+#if defined(ARDUINO_ARCH_MBED) || defined(ARDUINO_ARCH_RP2040)
+    if (WiFi.status() != WL_CONNECTED) WiFi.begin(WIFI_SSID, WIFI_PASSWORD);
+#endif
+    delay(1000);
+    i++;
+    if (i > 30) {
+      tft.drawString("Connecting Bangert", 120, 240);
+      Serial.println("");
+      WiFi.begin("Bangert-30-Andijk", "ikwilerin");
+      i = 0;
+    }
   }
-  Serial.println();
+  Serial.println("");
 
   tft.setTextDatum(BC_DATUM);
   tft.setTextPadding(240); // Pad next drawString() text to full width to over-write old text
@@ -219,9 +262,9 @@ void loop() {
     // Request and synchronise the local clock
     syncTime();
 
-    #ifdef SCREEN_SERVER
-      screenServer();
-    #endif
+#ifdef SCREEN_SERVER
+    screenServer();
+#endif
   }
 
   booted = false;
@@ -404,7 +447,7 @@ void drawCurrentWeather() {
   else  tft.drawString("oF", 237, 95);
 
   //Temperature large digits added in updateData() to save swapping font here
- 
+
   tft.setTextColor(TFT_ORANGE, TFT_BLACK);
   weatherText = String(current->wind_speed, 0);
 
@@ -556,17 +599,17 @@ void drawAstronomy() {
 ***************************************************************************************/
 const char* getMeteoconIcon(uint16_t id, bool today)
 {
-  if ( today && id/100 == 8 && (current->dt < current->sunrise || current->dt > current->sunset)) id += 1000; 
+  if ( today && id / 100 == 8 && (current->dt < current->sunrise || current->dt > current->sunset)) id += 1000;
 
-  if (id/100 == 2) return "thunderstorm";
-  if (id/100 == 3) return "drizzle";
-  if (id/100 == 4) return "unknown";
+  if (id / 100 == 2) return "thunderstorm";
+  if (id / 100 == 3) return "drizzle";
+  if (id / 100 == 4) return "unknown";
   if (id == 500) return "lightRain";
   else if (id == 511) return "sleet";
-  else if (id/100 == 5) return "rain";
+  else if (id / 100 == 5) return "rain";
   if (id >= 611 && id <= 616) return "sleet";
-  else if (id/100 == 6) return "snow";
-  if (id/100 == 7) return "fog";
+  else if (id / 100 == 6) return "snow";
+  if (id / 100 == 7) return "fog";
   if (id == 800) return "clear-day";
   if (id == 801) return "partly-cloudy-day";
   if (id == 802) return "cloudy";
