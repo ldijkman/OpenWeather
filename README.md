@@ -9,6 +9,8 @@ program / install it on your esp8266 from browser
 
 touch Electra
 
+playing with the files at https://github.com/ldijkman/OpenWeather/tree/master/examples/TFT_eSPI_OpenWeather_LittleFS
+
 ------------------
 
 Original by: http://blog.squix.org
