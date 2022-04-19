@@ -1,3 +1,18 @@
+
+
+
+
+
+//  4 electa read some settings from config.txt
+// so that you can change it in future from ace js cloud web editor
+// so that it can/will become part of electra touch tft broweser install
+
+
+
+
+
+
+
 //  Example from OpenWeather library: https://github.com/Bodmer/OpenWeather
 //  Adapted by Bodmer to use the TFT_eSPI library:  https://github.com/Bodmer/TFT_eSPI
 
