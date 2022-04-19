@@ -1,4 +1,4 @@
-eff0daa3b401275552f50152f2e584e7
+xxxxxxxapi key herexxxxxx
 52.735434
 5.179017
 
@@ -12,7 +12,7 @@ eff0daa3b401275552f50152f2e584e7
 line 1 apikey
 
               // Sign up for a key and read API configuration info here:
-              // https://openweathermap.org/, change x's to your API key
+              // https://openweathermap.org/, change xxxxxxxapi key herexxxxxx to your API key
 
 
              // Set the forecast longitude and latitude to at least 4 decimal places
