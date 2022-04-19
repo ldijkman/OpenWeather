@@ -23,9 +23,9 @@
 // Setttings defined below
 
 
-
-#define WIFI_SSID      "KaRo gasten wifi"
-#define WIFI_PASSWORD  "KaRo1681"
+// next wifi will be done by electra in future
+#define WIFI_SSID      "KaRo"
+#define WIFI_PASSWORD  "KaRo"
 
 #define TIMEZONE euCET // See NTP_Time.h tab for other "Zone references", UK, usMT etc
 
@@ -39,7 +39,7 @@ const String units = "metric";
 
 
 
-  // some config moved to config.txt
+  // some config moved to litlefs /config.txt file in  /data/config.txt
 
 
 
