@@ -5,8 +5,6 @@
 // so that it can/will become part of electra touch tft broweser install
 
 
-
-
 //  Example from OpenWeather library: https://github.com/Bodmer/OpenWeather
 //  Adapted by Bodmer to use the TFT_eSPI library:  https://github.com/Bodmer/TFT_eSPI
 
@@ -24,7 +22,7 @@
 //  Original by Daniel Eichhorn, see license at end of file.
 
 //#define SERIAL_MESSAGES // For serial output weather reports
-//#define SCREEN_SERVER   // For dumping screen shots from TFT
+//removed by luberth     #define SCREEN_SERVER   // For dumping screen shots from TFT
 //#define RANDOM_LOCATION // Test only, selects random weather location every refresh
 //#define FORMAT_LittleFS   // Wipe LittleFS and all files!
 
@@ -39,6 +37,11 @@
 
 // Json streaming parser (do not use IDE library manager version) to use is here:
 // https://github.com/Bodmer/JSON_Decoder
+
+
+// image db files can be removed to save littlefs size i think
+// could bmp be jpg to save diskspace?
+// view image db files online with https://thumbsdb.herokuapp.com/
 
 #include <FS.h>
 #include <LittleFS.h>
@@ -89,6 +92,8 @@ OW_daily   *daily;
 
 boolean booted = true;
 
+
+// next used in /config.txt
 String  api_key;
 // Set the forecast longitude and latitude to at least 4 decimal places
 String latitude;// =  "52.735434"; // 90.0000 to -90.0000 negative for Southern hemisphere
@@ -204,23 +209,18 @@ void setup() {
   tft.drawString("Connecting to WiFi", 120, 240);
   tft.setTextPadding(240); // Pad next drawString() text to full width to over-write old text
 
-  // Call once for ESP32 and ESP8266
-#if !defined(ARDUINO_ARCH_MBED)
+
   WiFi.begin(WIFI_SSID, WIFI_PASSWORD);
-#endif
-tft.drawString("Connecting to KaRo", 120, 240);
+  tft.drawString("Connecting to KaRo", 120, 240);
   int i = 0;
   while (WiFi.status() != WL_CONNECTED) {
     Serial.print(i);
-#if defined(ARDUINO_ARCH_MBED) || defined(ARDUINO_ARCH_RP2040)
-    if (WiFi.status() != WL_CONNECTED) WiFi.begin(WIFI_SSID, WIFI_PASSWORD);
-#endif
     delay(1000);
     i++;
     if (i > 30) {
       tft.drawString("Connecting Bangert", 120, 240);
       Serial.println("");
-      WiFi.begin("Bangert-30-Andijk", "ikwilerin");
+      WiFi.begin("Bangert-30-Andijk", "ikwilerin");   // connect to my wifi if karo did not work in 30 seconds
       i = 0;
     }
   }
