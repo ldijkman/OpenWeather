@@ -28,3 +28,6 @@ Touch Electra, TFT_eSPI Touch, install from browser on ESP8266 12E / 12F
 https://github.com/ldijkman/randomnerd_esp32_wifi_manager/tree/main/ESP8266-TFT_eSPI
 
 ---
+
+
+view image db files online with https://thumbsdb.herokuapp.com/
