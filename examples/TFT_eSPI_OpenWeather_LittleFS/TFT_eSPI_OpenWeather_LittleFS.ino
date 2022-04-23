@@ -161,7 +161,7 @@ void setup() {
     api_key = file.readStringUntil('\n');
     latitude = file.readStringUntil('\n');
     longitude = file.readStringUntil('\n');
-   
+
 
     Serial.print("-"); Serial.print(api_key); Serial.print("-");
     Serial.println("...");
@@ -169,7 +169,7 @@ void setup() {
     Serial.println("...");
     Serial.print("-"); Serial.print(longitude); Serial.print("-");
     Serial.println("...");
-   
+
   }
 
   // Enable if you want to erase LittleFS, this takes some time!
@@ -473,9 +473,12 @@ void drawCurrentWeather() {
   tft.setTextPadding(tft.textWidth(" 8888hPa")); // Max string length?
   tft.drawString(weatherText, 230, 136);
 
+
+
   int windAngle = (current->wind_deg + 22.5) / 45;
   if (windAngle > 7) windAngle = 0;
   String wind[] = {"N", "NE", "E", "SE", "S", "SW", "W", "NW" };
+  tft.drawString(wind[windAngle], 110, 75); //luberth draw wind direction in text == arrow confuse me == going or comming
   ui.drawBmp("/wind/" + wind[windAngle] + ".bmp", 101, 86);
 
   drawSeparator(153);
