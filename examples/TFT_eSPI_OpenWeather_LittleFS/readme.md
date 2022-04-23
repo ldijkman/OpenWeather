@@ -1,7 +1,9 @@
 
 trying to change the settings from hardcoded to a littlefs file config.txt
 
-so that you electra can edit the littlefs config.txt file from ace js inbrowser web cloud editor
+electra will do the wifi settings part 
+
+so that you can edit the littlefs config.txt file from ace js inbrowser web cloud editor to configure your openweathermap api key etc.
 
 nice add on for electra touch tft https://ldijkman.github.io/randomnerd_esp32_wifi_manager/Touch_Electra-Electra_Touch/
 
