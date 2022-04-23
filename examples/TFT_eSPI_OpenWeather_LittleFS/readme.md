@@ -5,6 +5,8 @@ electra will do the wifi settings part
 
 so that you can edit the littlefs config.txt file from ace js inbrowser web cloud editor to configure your openweathermap api key etc.
 
+also could add some fields to wifimanger for openweathermap
+
 nice add on for electra touch tft https://ldijkman.github.io/randomnerd_esp32_wifi_manager/Touch_Electra-Electra_Touch/
 
 program / install it on your esp8266 from browser
