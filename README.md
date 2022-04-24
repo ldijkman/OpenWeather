@@ -24,6 +24,7 @@ playing with the files at https://github.com/ldijkman/OpenWeather/tree/master/ex
 
 
 Original by: http://blog.squix.org
+- https://blog.squix.org/2017/07/new-weatherstation-color-version-published.html
 
 Adapted by: Bodmer
 
@@ -65,5 +66,6 @@ Latest screen grabs:
 forked from Bodmer/OpenWeather https://github.com/Bodmer/OpenWeather
 
 Original by: http://blog.squix.org
+- https://blog.squix.org/2017/07/new-weatherstation-color-version-published.html
 
 Adapted by: Bodmer
