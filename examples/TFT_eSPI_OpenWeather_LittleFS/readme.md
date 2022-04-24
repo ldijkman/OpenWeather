@@ -24,6 +24,7 @@ playing with the files at https://github.com/ldijkman/OpenWeather/tree/master/ex
 - /data littlefs directory something => was 900kb bmp => now 175kb jpg
 - do not see any problems with the change to jpg icon images yet
 - think its possible to save more littlefs space if images are cropped to content
+- but i am happy for now it will fit into Electra
 
 <img src="https://github.com/ldijkman/OpenWeather/blob/master/examples/TFT_eSPI_OpenWeather_LittleFS/data/electra_ohm_law.jpg">
 
