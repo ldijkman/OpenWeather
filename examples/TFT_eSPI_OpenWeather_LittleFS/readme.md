@@ -20,8 +20,9 @@ touch Electra
 
 playing with the files at https://github.com/ldijkman/OpenWeather/tree/master/examples/TFT_eSPI_OpenWeather_LittleFS
 
-#### changed bmp icons to jpg that saves a lot of littlefs size
-- do not see any problems with the images
+## changed bmp icons to jpg that saves a lot of littlefs size
+- do not see any problems with the change to jpg icon images yet
+- think its possible to save more littlefs space if images are cropped to content
 
 <img src="https://github.com/ldijkman/OpenWeather/blob/master/examples/TFT_eSPI_OpenWeather_LittleFS/data/electra_ohm_law.jpg">
 
