@@ -19,6 +19,8 @@
 
 //                >>>  EVEN MORE IMPORTANT TO PREVENT CRASHES <<<
 //>>>>>>  For ESP8266 set LittleFS to at least 2Mbytes before uploading files  <<<<<<
+// luberth => well i want to make this a webbrowser install on ESP8266 / program esp from webbrowser
+// so that wil take care of littlefs size settings
 
 //  ESP8266 pin connections to the TFT are defined in the TFT_eSPI library.
 // luberth => i use  these for Electra https://github.com/ldijkman/randomnerd_esp32_wifi_manager/tree/main/ESP8266-TFT_eSPI
