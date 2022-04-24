@@ -1,6 +1,11 @@
 
 
 //*************************************************************************
+//
+// https://github.com/ldijkman/OpenWeather
+// https://github.com/ldijkman/randomnerd_esp32_wifi_manager/tree/main/ESP8266-TFT_eSPI
+// https://ldijkman.github.io/randomnerd_esp32_wifi_manager/Touch_Electra-Electra_Touch/
+//
 //  4 electa read some settings from /data littlefs /config.txt
 // so that you can change it in future from ace js inbrowser cloud web editor
 // so that it can/will become part of electra touch tft browser install ESP8266 4mbyte ESP12E ESP12F
@@ -808,3 +813,16 @@ String strDate(time_t unixTime)
 //  Added forecast for 4th day
 //  Added cloud cover and humidity in lieu of Moon rise/set
 //  Adapted to be compatible with ESP32
+
+
+//*************************************************************************
+//
+// https://github.com/ldijkman/OpenWeather
+// https://github.com/ldijkman/randomnerd_esp32_wifi_manager/tree/main/ESP8266-TFT_eSPI
+// https://ldijkman.github.io/randomnerd_esp32_wifi_manager/Touch_Electra-Electra_Touch/
+//
+//  4 electa read some settings from /data littlefs /config.txt
+// so that you can change it in future from ace js inbrowser cloud web editor
+// so that it can/will become part of electra touch tft browser install ESP8266 4mbyte ESP12E ESP12F
+// luberth
+//************************************************************************
