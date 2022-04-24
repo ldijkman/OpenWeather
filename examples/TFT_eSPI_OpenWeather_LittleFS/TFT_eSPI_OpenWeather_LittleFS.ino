@@ -15,6 +15,8 @@
 
 //                           >>>  IMPORTANT  <<<
 //         Modify setup in All_Settings.h tab to configure your location etc
+//         luberth => some data move to /config.txt littlefs /data
+//         do not want it hardcoded  ace js inbrowser cloudeditor should edit littlefs config.txt or wifimanager 
 
 //                >>>  EVEN MORE IMPORTANT TO PREVENT CRASHES <<<
 //>>>>>>  For ESP8266 set LittleFS to at least 2Mbytes before uploading files  <<<<<<
