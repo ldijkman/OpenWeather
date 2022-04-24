@@ -284,12 +284,12 @@ void updateData() {
   daily =   new OW_daily;
   hourly =  new OW_hourly;
 
-
+  
   Serial.print("Lat = "); Serial.print(latitude);
   Serial.print(", Lon = "); Serial.println(longitude);
   Serial.println("");
   Serial.println("location lat lon from littlefs config.txt");
-  Serial.print("https://www.google.com/search?q="); Serial.print(latitude); Serial.println(longitude);
+  Serial.print("https://www.google.com/search?q="); Serial.print(latitude); Serial.print(",");Serial.println(longitude);
   Serial.println("");
   
   bool parsed = ow.getForecast(current, hourly, daily, api_key, latitude, longitude, units, language, true);
