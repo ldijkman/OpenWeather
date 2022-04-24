@@ -1,9 +1,11 @@
 
 
-//  4 electa read some settings from config.txt
-// so that you can change it in future from ace js cloud web editor
-// so that it can/will become part of electra touch tft broweser install
-
+//*************************************************************************
+//  electa read some settings from /data littlefs /config.txt
+// so that you can change it in future from ace js inbrowser cloud web editor
+// so that it can/will become part of electra touch tft browser install ESP8266 4mbyte ESP12E ESP12F
+// luberth
+//************************************************************************
 
 //  Example from OpenWeather library: https://github.com/Bodmer/OpenWeather
 //  Adapted by Bodmer to use the TFT_eSPI library:  https://github.com/Bodmer/TFT_eSPI
@@ -24,7 +26,7 @@
 //#define SERIAL_MESSAGES // For serial output weather reports
 //removed by luberth     #define SCREEN_SERVER   // For dumping screen shots from TFT
 //#define RANDOM_LOCATION // Test only, selects random weather location every refresh
-//#define FORMAT_LittleFS   // Wipe LittleFS and all files!
+
 
 // This sketch uses font files created from the Noto family of fonts as bitmaps
 // generated from these fonts may be freely distributed:
@@ -172,12 +174,7 @@ void setup() {
 
   }
 
-  // Enable if you want to erase LittleFS, this takes some time!
-  // then disable and reload sketch to avoid reformatting on every boot!
-#ifdef FORMAT_LittleFS
-  tft.setTextDatum(BC_DATUM); // Bottom Centre datum
-  tft.drawString("Formatting LittleFS, so wait!", 120, 195); LittleFS.format();
-#endif
+
 
   TJpgDec.setJpgScale(1);
   TJpgDec.setCallback(tft_output);
