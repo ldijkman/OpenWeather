@@ -19,6 +19,8 @@ playing with the files at https://github.com/ldijkman/OpenWeather/tree/master/ex
 
 ### All you need is Electra
 
+#### Soon Electra Will Control a Gazillion Devices
+
 ------------------
 
 Original by: http://blog.squix.org
