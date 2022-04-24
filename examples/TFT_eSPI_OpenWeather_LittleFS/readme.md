@@ -21,6 +21,7 @@ touch Electra
 playing with the files at https://github.com/ldijkman/OpenWeather/tree/master/examples/TFT_eSPI_OpenWeather_LittleFS
 
 ## changed bmp icons to jpg that saves a lot of littlefs size
+- something like => 900kb bmp => now 175kb jpg
 - do not see any problems with the change to jpg icon images yet
 - think its possible to save more littlefs space if images are cropped to content
 
