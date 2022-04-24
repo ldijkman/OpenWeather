@@ -1,5 +1,4 @@
 
-
 //*************************************************************************
 //  electa read some settings from /data littlefs /config.txt
 // so that you can change it in future from ace js inbrowser cloud web editor
@@ -24,8 +23,6 @@
 //  Original by Daniel Eichhorn, see license at end of file.
 
 //#define SERIAL_MESSAGES // For serial output weather reports
-//removed by luberth     #define SCREEN_SERVER   // For dumping screen shots from TFT
-//#define RANDOM_LOCATION // Test only, selects random weather location every refresh
 
 
 // This sketch uses font files created from the Noto family of fonts as bitmaps
@@ -286,14 +283,10 @@ void updateData() {
   daily =   new OW_daily;
   hourly =  new OW_hourly;
 
-#ifdef RANDOM_LOCATION // Randomly choose a place on Earth to test icons etc
-  String latitude = "";
-  latitude = (random(180) - 90);
-  String longitude = "";
-  longitude = (random(360) - 180);
+
   Serial.print("Lat = "); Serial.print(latitude);
   Serial.print(", Lon = "); Serial.println(longitude);
-#endif
+
 
   bool parsed = ow.getForecast(current, hourly, daily, api_key, latitude, longitude, units, language, true);
 
