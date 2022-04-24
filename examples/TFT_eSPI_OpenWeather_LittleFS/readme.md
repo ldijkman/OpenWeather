@@ -49,6 +49,6 @@ https://github.com/ldijkman/randomnerd_esp32_wifi_manager/tree/main/ESP8266-TFT_
 ---
 
 
-# warning Electra can Kill you
+# Warning Fiddleing with Electra can Kill you
 
 https://ldijkman.github.io/randomnerd_esp32_wifi_manager/Touch_Electra-Electra_Touch/
