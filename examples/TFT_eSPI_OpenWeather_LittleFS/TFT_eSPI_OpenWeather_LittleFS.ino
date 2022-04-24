@@ -1,4 +1,5 @@
 
+
 //*************************************************************************
 //  electa read some settings from /data littlefs /config.txt
 // so that you can change it in future from ace js inbrowser cloud web editor
@@ -178,9 +179,9 @@ void setup() {
   TJpgDec.setSwapBytes(true); // May need to swap the jpg colour bytes (endianess)
 
   // Draw splash screen
- // if (LittleFS.exists("/splash/OpenWeather.jpg")   == true) {
-    TJpgDec.drawFsJpg(0, 0, "/electra_ohm_law.jpg", LittleFS);
- // }
+  // if (LittleFS.exists("/splash/OpenWeather.jpg")   == true) {
+  TJpgDec.drawFsJpg(0, 0, "/electra_ohm_law.jpg", LittleFS);
+  // }
 
   delay(2500);
 
@@ -286,8 +287,11 @@ void updateData() {
 
   Serial.print("Lat = "); Serial.print(latitude);
   Serial.print(", Lon = "); Serial.println(longitude);
-
-
+  Serial.println("");
+  Serial.println("location lat lon from littlefs config.txt");
+  Serial.print("https://www.google.com/search?q="); Serial.print(latitude); Serial.println(longitude);
+  Serial.println("");
+  
   bool parsed = ow.getForecast(current, hourly, daily, api_key, latitude, longitude, units, language, true);
 
   if (parsed) Serial.println("Data points received");
@@ -468,7 +472,7 @@ void drawCurrentWeather() {
   int windAngle = (current->wind_deg + 22.5) / 45;
   if (windAngle > 7) windAngle = 0;
   String wind[] = {"N", "NE", "E", "SE", "S", "SW", "W", "NW" };
-  tft.drawString(wind[windAngle], 110, 75); //luberth draw wind direction in text == arrow confuse me == going or comming
+  tft.drawString(wind[windAngle], 150, 70); //luberth draw wind direction in text == arrow confuse me == going or comming
   ui.drawBmp("/wind/" + wind[windAngle] + ".bmp", 101, 86);
 
   drawSeparator(153);
