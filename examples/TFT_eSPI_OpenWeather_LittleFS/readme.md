@@ -22,7 +22,7 @@ playing with the files at https://github.com/ldijkman/OpenWeather/tree/master/ex
 
 ## changed bmp icons to jpg that saves a lot of littlefs size
 - linux command batch convert bmp to jpg => mogrify -format jpg *.bmp
-- /data littlefs directory something => was 900kb bmp => now 175kb jpg
+- /data littlefs directory something => was 1086kb bmp => now 175kb jpg
 - do not see any problems with the change to jpg icon images yet
 - think its possible to save more littlefs space if images are cropped to content
 - but i am happy for now it will fit into Electra
