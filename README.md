@@ -5,7 +5,7 @@ so that you electra can edit the littlefs config.txt file from ace js inbrowser 
 
 nice add on for electra touch tft https://ldijkman.github.io/randomnerd_esp32_wifi_manager/Touch_Electra-Electra_Touch/
 
-program / install it on your esp8266 from browser
+program / install it on your ESP8266 12E,12F from Browser
 
 touch Electra
 
