@@ -465,8 +465,9 @@ void drawCurrentWeather() {
   if (windAngle > 7) windAngle = 0;
   String wind[] = {"N", "NE", "E", "SE", "S", "SW", "W", "NW" };
   tft.drawString(wind[windAngle], 150, 70); //luberth draw wind direction in text == arrow confuse me == going or comming
-  ui.drawBmp("/wind/" + wind[windAngle] + ".bmp", 101, 86);
-
+  //ui.drawBmp("/wind/" + wind[windAngle] + ".bmp", 101, 86);
+  TJpgDec.drawFsJpg(  101, 86, "/wind/" + wind[windAngle] + ".jpg", LittleFS);
+  
   drawSeparator(153);
 
   tft.setTextDatum(TL_DATUM); // Reset datum to normal
