@@ -1,5 +1,9 @@
 <p><a href="https://stand-with-ukraine.pp.ua/#" rel="nofollow"><img src="https://raw.githubusercontent.com/vshymanskyy/StandWithUkraine/main/banner2-direct.svg" alt="Stand With Ukraine"></a></p>
 
+### https://russiaforsale.org/
+
+---
+
 trying to change the settings from hardcoded to a littlefs file config.txt
 
 electra will do the wifi settings part 
