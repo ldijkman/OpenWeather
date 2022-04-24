@@ -18,10 +18,12 @@
 //         luberth => some data move to /config.txt littlefs /data
 //         do not want it hardcoded  ace js inbrowser cloudeditor should edit littlefs config.txt or wifimanager 
 
+
 //                >>>  EVEN MORE IMPORTANT TO PREVENT CRASHES <<<
 //>>>>>>  For ESP8266 set LittleFS to at least 2Mbytes before uploading files  <<<<<<
 
-//  ESP8266/ESP32 pin connections to the TFT are defined in the TFT_eSPI library.
+//  ESP8266 pin connections to the TFT are defined in the TFT_eSPI library.
+// luberth => i use  these for Electra https://github.com/ldijkman/randomnerd_esp32_wifi_manager/tree/main/ESP8266-TFT_eSPI
 
 //  Original by Daniel Eichhorn, see license at end of file.
 
@@ -286,7 +288,7 @@ void updateData() {
   daily =   new OW_daily;
   hourly =  new OW_hourly;
 
-  
+
   Serial.print("Lat = "); Serial.print(latitude);
   Serial.print(", Lon = "); Serial.println(longitude);
   Serial.println("");
