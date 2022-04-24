@@ -44,4 +44,4 @@ https://github.com/ldijkman/randomnerd_esp32_wifi_manager/tree/main/ESP8266-TFT_
 ---
 
 
-view image db files online with https://thumbsdb.herokuapp.com/
+# warning Electra can Kill you
