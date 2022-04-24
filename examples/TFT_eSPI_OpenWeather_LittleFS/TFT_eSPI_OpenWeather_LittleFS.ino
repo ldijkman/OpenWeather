@@ -1,4 +1,5 @@
 
+
 //*************************************************************************
 //  4 electa read some settings from /data littlefs /config.txt
 // so that you can change it in future from ace js inbrowser cloud web editor
@@ -401,7 +402,8 @@ void drawCurrentWeather() {
   weatherIcon = getMeteoconIcon(current->id, true);
 
   //uint32_t dt = millis();
-  ui.drawBmp("/icon/" + weatherIcon + ".bmp", 0, 53);
+  //ui.drawBmp("/icon/" + weatherIcon + ".bmp", 0, 53);
+  TJpgDec.drawFsJpg( 0, 53, "/icon/" + weatherIcon + ".jpg", LittleFS);
 
 
   //Serial.print("Icon draw time = "); Serial.println(millis()-dt);
@@ -510,8 +512,9 @@ void drawForecastDetail(uint16_t x, uint16_t y, uint8_t dayIndex) {
 
   String weatherIcon = getMeteoconIcon(daily->id[dayIndex], false);
 
-  ui.drawBmp("/icon50/" + weatherIcon + ".bmp", x, y + 18);
-
+  //ui.drawBmp("/icon50/" + weatherIcon + ".bmp", x, y + 18);
+  TJpgDec.drawFsJpg( x, y + 18, "/icon50/" + weatherIcon + ".jpg", LittleFS);
+  
   tft.setTextPadding(0); // Reset padding width to none
 }
 
@@ -533,7 +536,8 @@ void drawAstronomy() {
   uint8_t icon = moon_phase(y, m, d, h, &ip);
 
   tft.drawString(moonPhase[ip], 120, 319);
-  ui.drawBmp("/moon/moonphase_L" + String(icon) + ".bmp", 120 - 30, 318 - 16 - 60);
+  //ui.drawBmp("/moon/moonphase_L" + String(icon) + ".bmp", 120 - 30, 318 - 16 - 60);
+  TJpgDec.drawFsJpg( 120 - 30, 318 - 16 - 60, "/moon/moonphase_L" + String(icon) + ".jpg", LittleFS);
 
   tft.setTextDatum(BC_DATUM);
   tft.setTextColor(TFT_ORANGE, TFT_BLACK);
