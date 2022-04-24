@@ -40,6 +40,7 @@ Original by: http://blog.squix.org
 Adapted by: Bodmer
 
 forked from Bodmer/OpenWeather https://github.com/Bodmer/OpenWeather
+
 ---
 
 Touch Electra, TFT_eSPI Touch, install from browser on ESP8266 12E / 12F
