@@ -181,11 +181,11 @@ void setup() {
   TJpgDec.setSwapBytes(true); // May need to swap the jpg colour bytes (endianess)
 
   // Draw splash screen
-  if (LittleFS.exists("/splash/OpenWeather.jpg")   == true) {
-    TJpgDec.drawFsJpg(0, 40, "/splash/OpenWeather.jpg", LittleFS);
-  }
+ // if (LittleFS.exists("/splash/OpenWeather.jpg")   == true) {
+    TJpgDec.drawFsJpg(0, 0, "/electra_ohm_law.jpg", LittleFS);
+ // }
 
-  delay(2000);
+  delay(2500);
 
   // Clear bottom section of screen
   tft.fillRect(0, 206, 240, 320 - 206, TFT_BLACK);
