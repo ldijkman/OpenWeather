@@ -1,7 +1,6 @@
 
-
 //*************************************************************************
-//  electa read some settings from /data littlefs /config.txt
+//  4 electa read some settings from /data littlefs /config.txt
 // so that you can change it in future from ace js inbrowser cloud web editor
 // so that it can/will become part of electra touch tft browser install ESP8266 4mbyte ESP12E ESP12F
 // luberth
@@ -10,8 +9,7 @@
 //  Example from OpenWeather library: https://github.com/Bodmer/OpenWeather
 //  Adapted by Bodmer to use the TFT_eSPI library:  https://github.com/Bodmer/TFT_eSPI
 
-//  This sketch is compatible with the RP2040 Nano Connect, ESP32 and ESP32 S2, it may
-//  also work on ESP8266 but this has not been tested.
+//  This sketch is compatible with  ESP8266 12E 12F 32mbit/4MByte
 
 //                           >>>  IMPORTANT  <<<
 //         Modify setup in All_Settings.h tab to configure your location etc
@@ -26,6 +24,7 @@
 // luberth => i use  these for Electra https://github.com/ldijkman/randomnerd_esp32_wifi_manager/tree/main/ESP8266-TFT_eSPI
 
 //  Original by Daniel Eichhorn, see license at end of file.
+//  See more at http://blog.squix.ch
 
 //#define SERIAL_MESSAGES // For serial output weather reports
 
@@ -34,16 +33,11 @@
 // generated from these fonts may be freely distributed:
 // https://www.google.com/get/noto/
 
-// A processing sketch to create new fonts can be found in the Tools folder of TFT_eSPI
-// https://github.com/Bodmer/TFT_eSPI/tree/master/Tools/Create_Smooth_Font/Create_font
-// New fonts can be generated to include language specific characters. The Noto family
-// of fonts has an extensive character set coverage.
-
 // Json streaming parser (do not use IDE library manager version) to use is here:
 // https://github.com/Bodmer/JSON_Decoder
 
 
-// image db files can be removed to save littlefs size i think
+// luberth => image db files can be removed to save littlefs size i think
 // could bmp be jpg to save diskspace?
 // view image db files online with https://thumbsdb.herokuapp.com/
 
@@ -63,18 +57,11 @@
 // Additional functions
 #include "GfxUi.h"          // Attached to this sketch
 
-// Choose library to load
-#ifdef ESP8266
-#include <ESP8266WiFi.h>
-#elif defined(ARDUINO_ARCH_MBED) || defined(ARDUINO_ARCH_RP2040)
-#include <WiFiNINA.h>
-#else // ESP32
-#include <WiFi.h>
-#endif
 
+#include <ESP8266WiFi.h>
 
 // check All_Settings.h for adapting to your needs
-#include "All_Settings.h"
+#include "All_Settings.h"  // part of config is in config.txt
 
 #include <JSON_Decoder.h> // https://github.com/Bodmer/JSON_Decoder
 
@@ -261,9 +248,6 @@ void loop() {
     // Request and synchronise the local clock
     syncTime();
 
-#ifdef SCREEN_SERVER
-    screenServer();
-#endif
   }
 
   booted = false;
