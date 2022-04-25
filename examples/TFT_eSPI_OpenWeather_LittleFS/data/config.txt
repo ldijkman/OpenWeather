@@ -1,4 +1,4 @@
-xxxxxxxapi key herexxxxxx
+-your-openweathermap-api-key-here-
 52.735434
 5.179017
 
@@ -6,23 +6,32 @@ xxxxxxxapi key herexxxxxx
 
 
 
+Trying to get this working with Electra Touch
+https://github.com/ldijkman/OpenWeather
 
 
-hardcoded example is not nice for browser install
-so a make it a config.txt file
-you can edit it later on Electras main page link to /edit
-that opens he ace js cloud web editor
-and you can edit the settings in config.txt
-
-first 3 lines of this file are read by code for config
+Fist 3 lines are read by the program for openweathermap configuration
+you can edit this file with ace js cloudeditor
+http:// mdnsname or ip /edit
+ace js editor login admin / admin
 
 
 line 1 apikey
+    https://openweathermap.org/
+        Sign up for a key and read API configuration info here:
+         https://openweathermap.org/, change line1 to your API key
+         Enable the API key?
 
-              // Sign up for a key and read API configuration info here:
-              // https://openweathermap.org/, change xxxxxxxapi key herexxxxxx to your API key
 
-
-             // Set the forecast longitude and latitude to at least 4 decimal places
+     Set the forecast longitude and latitude to at least 4 decimal places
 line 2 latitude 52.735434  // 90.0000 to -90.0000 negative for Southern hemisphere
 line 3 longitude 5.179017  // 180.000 to -180.000 negative for West
+
+
+https://www.latlong.net
+Latitude and Longitude Finder on Map Get Coordinates
+Latlong.net is an online geographic tool that can be used to lookup latitude and longitude of a place,
+https://www.latlong.net/
+
+google to find a lat,long location ( my location ;-)
+https://www.google.com/search?q=52.735434,5.179017
