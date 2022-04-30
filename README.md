@@ -24,6 +24,9 @@ playing with the files at https://github.com/ldijkman/OpenWeather/tree/master/ex
 - but i am happy for now it will fit into Electra
 - 
 ---
+<img src="https://github.com/ldijkman/randomnerd_esp32_wifi_manager/blob/main/ESP8266-TFT_eSPI/20220430_140351.jpg">
+
+
 ---
 ---
 ---
